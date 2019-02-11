@@ -67,7 +67,7 @@ public class Vehicule implements Comparable<Vehicule>{
     }
 
 
-    public double rouler(int distance)
+    public int rouler(int distance)
     {
         double consomationParKm = consommation/100;
 
@@ -83,8 +83,12 @@ public class Vehicule implements Comparable<Vehicule>{
         else
         {
             jauge = 0;
-            compteur.add(ditanceMax);
-            return ditanceMax;
+
+            Double d = new Double(ditanceMax);
+            distance = d.intValue();
+
+            compteur.add(distance);
+            return distance;
         }
     }
 

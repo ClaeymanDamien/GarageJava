@@ -21,6 +21,7 @@ public class Main {
 
         bmw.faireLePlein();
         merco.faireLePlein();
+        peugeot.faireLePlein();
 
         bmw.rouler(400);
         merco.rouler(20);
@@ -32,7 +33,7 @@ public class Main {
         pointS.add(bmw);
         pointS.add(peugeot);
 
-        pointS.noImmatriculationSort();
+        pointS.compteurSort();
 
         System.out.println(bmw);
         System.out.println(merco);

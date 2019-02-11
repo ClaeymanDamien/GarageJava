@@ -1,8 +1,8 @@
 package automobile;
 
 public class Compteur {
-    private double totaliseur;
-    private double partiel;
+    private int totaliseur;
+    private int partiel;
 
     private static final int MAX_PARTIEL = 1000;
 
@@ -17,7 +17,7 @@ public class Compteur {
         partiel = 0;
     }
 
-    public void add(double km)
+    public void add(int km)
     {
         totaliseur = totaliseur + km;
         partiel = partiel + km;
@@ -30,23 +30,23 @@ public class Compteur {
     }
     //SETTER
 
-    public void setPartiel(double partiel) {
+    public void setPartiel(int partiel) {
         this.partiel = partiel;
     }
 
 
-    public void setTotaliseur(double totaliseur) {
+    public void setTotaliseur(int totaliseur) {
         this.totaliseur = totaliseur;
     }
 
     //GETTER
 
 
-    public double getTotaliseur() {
+    public int getTotaliseur() {
         return totaliseur;
     }
 
-    public double getPartiel() {
+    public int getPartiel() {
         return partiel;
     }
 }
