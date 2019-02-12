@@ -8,8 +8,7 @@ public class Compteur {
 
     public Compteur()
     {
-        totaliseur = 0;
-        partiel = 0;
+
     }
 
     public void resetPartiel()
@@ -17,25 +16,25 @@ public class Compteur {
         partiel = 0;
     }
 
-    public void add(int km)
+    public void add(final int km)
     {
         totaliseur = totaliseur + km;
         partiel = partiel + km;
     }
 
-    //compteur = [ totalisateur = 500 | partiel = 108 ]
+    @Override
     public String toString()
     {
         return "compteur = [totalisateur = " + totaliseur + " | partiel = " + partiel + " ]";
     }
     //SETTER
 
-    public void setPartiel(int partiel) {
+    public void setPartiel(final int partiel) {
         this.partiel = partiel;
     }
 
 
-    public void setTotaliseur(int totaliseur) {
+    public void setTotaliseur(final int totaliseur) {
         this.totaliseur = totaliseur;
     }
 

@@ -1,21 +1,30 @@
 package automobile;
 
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
+import java.util.*;
+import java.lang.Iterable;
 
-public class Garage {
+public class Garage1 implements Iterable<Vehicule>{
 
 
-    private ArrayList<Vehicule> vehiculeList;
+    private List <Vehicule> vehiculeList;
 
-    public Garage()
+    public Garage1()
     {
             vehiculeList = new ArrayList<Vehicule>();
     }
 
-    public void add(Vehicule vehicule)
+    public Garage1(List<Vehicule> vehiculeList)
+    {
+        this.vehiculeList = vehiculeList;
+    }
+
+    public Iterator <Vehicule> iterator()
+    {
+        return this.vehiculeList.iterator();
+    }
+
+    public void add(final Vehicule vehicule)
     {
         vehiculeList.add(vehicule);
     }
@@ -54,16 +63,6 @@ class CompteurComparator implements Comparator<Vehicule> {
         int compteur1 = vehicule1.getCompteur().getTotaliseur();
         int compteur2 = vehicule2.getCompteur().getTotaliseur();
 
-        if(compteur1>compteur2)
-        {
-            return 1;
-        }
-
-        if (compteur1<compteur2)
-        {
-            return -1;
-        }
-
-        return 0;
+        return compteur1-compteur2;
     }
 }

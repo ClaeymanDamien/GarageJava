@@ -1,6 +1,7 @@
 package automobile;
 
 import java.util.Comparator;
+import java.util.Objects;
 
 public class Vehicule implements Comparable<Vehicule>{
 
@@ -12,7 +13,7 @@ public class Vehicule implements Comparable<Vehicule>{
 
     private static final int CAPACITE_RESERVOIR = 50;
 
-    public Vehicule(double consommation)
+    public Vehicule(final double consommation)
     {
         compteur = new Compteur();
         noImmatriculation = registre;
@@ -33,23 +34,12 @@ public class Vehicule implements Comparable<Vehicule>{
         return output;
     }
 
-    public int compareTo(Vehicule vehicule2)
+    public int compareTo(final Vehicule vehicule2)
     {
-        if(this.noImmatriculation == vehicule2.noImmatriculation)
-        {
-            return 0;
-        }
-        else if(this.noImmatriculation > vehicule2.noImmatriculation)
-        {
-            return 1;
-        }
-        else
-        {
-            return -1;
-        }
+        return this.noImmatriculation - vehicule2.noImmatriculation;
     }
 
-    public void mettreDeLessence(int litre)
+    public void mettreDeLessence(final int litre)
     {
         if(litre+jauge <= CAPACITE_RESERVOIR)
         {
@@ -67,7 +57,7 @@ public class Vehicule implements Comparable<Vehicule>{
     }
 
 
-    public int rouler(int distance)
+    public int rouler(final int distance)
     {
         double consomationParKm = consommation/100;
 
@@ -85,10 +75,10 @@ public class Vehicule implements Comparable<Vehicule>{
             jauge = 0;
 
             Double d = new Double(ditanceMax);
-            distance = d.intValue();
+            int distancePossible = d.intValue();
 
-            compteur.add(distance);
-            return distance;
+            compteur.add(distancePossible);
+            return distancePossible;
         }
     }
 
@@ -100,6 +90,22 @@ public class Vehicule implements Comparable<Vehicule>{
 
     public static void setRegistre(int registre) {
         Vehicule.registre = registre;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Vehicule vehicule = (Vehicule) o;
+        return noImmatriculation == vehicule.noImmatriculation &&
+                Double.compare(vehicule.jauge, jauge) == 0 &&
+                Double.compare(vehicule.consommation, consommation) == 0 &&
+                Objects.equals(compteur, vehicule.compteur);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(noImmatriculation, compteur, jauge, consommation);
     }
 
     public void setJauge(double jauge) {

@@ -1,6 +1,6 @@
 package test;
 
-import automobile.Garage;
+import automobile.Garage1;
 import automobile.Vehicule;
 
 import java.util.Collections;
@@ -17,7 +17,7 @@ public class Main {
         Vehicule merco = new Vehicule(20);
         Vehicule peugeot = new Vehicule(5);
 
-        Garage pointS = new Garage();
+        Garage1 pointS = new Garage1();
 
         bmw.faireLePlein();
         merco.faireLePlein();
@@ -37,6 +37,21 @@ public class Main {
 
         System.out.println(bmw);
         System.out.println(merco);
+        System.out.println(peugeot);
         System.out.println(pointS);
+
+        pointS.noImmatriculationSort();
+
+
+        System.out.println(pointS);
+
+        for(Vehicule vehicule : pointS) {
+            vehicule.faireLePlein();
+            vehicule.rouler(20);
+        }
+
+        System.out.println(pointS);
+
+        
     }
 }
