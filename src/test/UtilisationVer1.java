@@ -5,8 +5,8 @@ import automobile.Vehicule;
 
 
 public class UtilisationVer1 {
-
-   /* public static void main(String[] args) {
+/*
+   public static void main(String[] args) {
 
 
         System.out.println("######## TESTS DES COMPTEURS ########");

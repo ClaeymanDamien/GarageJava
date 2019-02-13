@@ -22,22 +22,7 @@ public class Vehicule implements Comparable<Vehicule>{
         jauge = 0;
     }
 
-    @Override
-    public String toString() {
-        String output;
-
-        output = "Immatriculation = " + noImmatriculation + "\n";
-        output += "Consommation = " + consommation + "\n";
-        output += "Jauge = " + jauge + "\n";
-        output += compteur + "\n";
-
-        return output;
-    }
-
-    public int compareTo(final Vehicule vehicule2)
-    {
-        return this.noImmatriculation - vehicule2.noImmatriculation;
-    }
+    /** Action du vehicule **/
 
     public void mettreDeLessence(final int litre)
     {
@@ -82,14 +67,18 @@ public class Vehicule implements Comparable<Vehicule>{
         }
     }
 
-    //SETTER
+    /** Les overrides **/
 
-    public void setNoImmatriculation(int noImmatriculation) {
-        this.noImmatriculation = noImmatriculation;
-    }
+    @Override
+    public String toString() {
+        String output;
 
-    public static void setRegistre(int registre) {
-        Vehicule.registre = registre;
+        output = "Immatriculation = " + noImmatriculation + "\n";
+        output += "Consommation = " + consommation + "\n";
+        output += "Jauge = " + jauge + "\n";
+        output += compteur + "\n";
+
+        return output;
     }
 
     @Override
@@ -108,12 +97,32 @@ public class Vehicule implements Comparable<Vehicule>{
         return Objects.hash(noImmatriculation, compteur, jauge, consommation);
     }
 
+
+
+    @Override
+    public int compareTo(final Vehicule vehicule2)
+    {
+        return this.noImmatriculation - vehicule2.noImmatriculation;
+    }
+
+    //SETTER
+
     public void setJauge(double jauge) {
         if(jauge>CAPACITE_RESERVOIR)
             this.jauge = CAPACITE_RESERVOIR;
         else
             this.jauge = jauge;
     }
+
+    public void setNoImmatriculation(int noImmatriculation) {
+        this.noImmatriculation = noImmatriculation;
+    }
+
+    public static void setRegistre(int registre) {
+        Vehicule.registre = registre;
+    }
+
+
 
     public void setConsommation(double consommation) {
         this.consommation = consommation;
@@ -140,5 +149,15 @@ public class Vehicule implements Comparable<Vehicule>{
 
     public double getConsommation() {
         return consommation;
+    }
+}
+
+class CompteurComparator implements Comparator<Vehicule> {
+    public int compare(Vehicule vehicule1, Vehicule vehicule2)
+    {
+        int compteur1 = vehicule1.getCompteur().getTotaliseur();
+        int compteur2 = vehicule2.getCompteur().getTotaliseur();
+
+        return compteur1-compteur2;
     }
 }

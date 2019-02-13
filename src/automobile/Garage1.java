@@ -6,7 +6,6 @@ import java.lang.Iterable;
 
 public class Garage1 implements Iterable<Vehicule>{
 
-
     private List <Vehicule> vehiculeList;
 
     public Garage1()
@@ -24,21 +23,39 @@ public class Garage1 implements Iterable<Vehicule>{
         return this.vehiculeList.iterator();
     }
 
+    /** Les actions **/
+
     public void add(final Vehicule vehicule)
     {
         vehiculeList.add(vehicule);
     }
 
-    public void noImmatriculationSort()
+    /** Les tries **/
+
+    public void sortNoImmatriculation()
     {
         vehiculeList.sort(null);
     }
 
-    public void compteurSort()
+    public void sortCompteur()
     {
         vehiculeList.sort(new CompteurComparator());
     }
 
+    /** Les overrides */
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Garage1 vehicules = (Garage1) o;
+        return Objects.equals(vehiculeList, vehicules.vehiculeList);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(vehiculeList);
+    }
 
     @Override
     public String toString() {
@@ -57,12 +74,3 @@ public class Garage1 implements Iterable<Vehicule>{
     }
 }
 
-class CompteurComparator implements Comparator<Vehicule> {
-    public int compare(Vehicule vehicule1, Vehicule vehicule2)
-    {
-        int compteur1 = vehicule1.getCompteur().getTotaliseur();
-        int compteur2 = vehicule2.getCompteur().getTotaliseur();
-
-        return compteur1-compteur2;
-    }
-}
