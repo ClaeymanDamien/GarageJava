@@ -117,5 +117,22 @@ public class Garage1 implements Iterable<Vehicule>{
 
         return output;
     }
+
+    public void resetPartielAll() {
+        for(int i = 0; i < vehiculeList.size(); i++)
+        {
+            vehiculeList.get(i).getCompteur().setPartiel(0);
+        }
+    }
+
+    public void faireLePleinAll() {
+        for(int i = 0; i < vehiculeList.size(); i++)
+        {
+            if (vehiculeList.get(i).getJauge()<10)
+            {
+                vehiculeList.get(i).faireLePlein();
+            }
+        }
+    }
 }
 

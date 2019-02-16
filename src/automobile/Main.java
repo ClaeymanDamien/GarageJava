@@ -13,8 +13,8 @@ public class Main {
         System.out.println("\n\n######## TESTS DU GARAGE Collection: List ########");
         Main.testGarage1();
         
-        /*System.out.println("\n\n######## TESTS DU GARAGE Collection: List Mappings ########");
-        Main.testMappings1();*/
+        System.out.println("\n\n######## TESTS DU GARAGE Collection: List Mappings ########");
+        Main.testMappings1();
 
         System.out.println("\n\n######## TESTS DU GARAGE Collection: Set Comparable########");
         Main.testGarage2();
@@ -222,6 +222,40 @@ public class Main {
 
         System.out.println("\n\n##Tri selon le no immatriculation ##");
         garage.sortNoImmatriculation();
+        System.out.println(garage);
+    }
+
+    public static void testMappings1() {
+        Garage1 garage = new Garage1();
+
+        garage.add(new Vehicule(5.7));
+        garage.add(new Vehicule(6.2));
+        garage.add(new Vehicule(8.5));
+        garage.add(new Vehicule(5.9));
+        garage.add(new Vehicule(4.5));
+        System.out.println(garage);
+
+        for(Vehicule vehicule : garage) {
+            vehicule.faireLePlein();
+            vehicule.rouler((int) (Math.random() * 3000));
+        }
+        System.out.println(garage);
+
+        for(Vehicule vehicule : garage) {
+            try {
+                vehicule.mettreDeLessence((int) (Math.random() * 100));
+            } catch (CapaciteDepasseeException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        System.out.println(garage);
+
+        garage.resetPartielAll();
+        System.out.println("\n remise à 0 des compteurs partiels de tous les véhiculess!");
+        System.out.println(garage);
+
+        garage.faireLePleinAll();
+        System.out.println("\n faire le plein de tous les véhicules s'il reste moins de 10 litres !");
         System.out.println(garage);
     }
 }
