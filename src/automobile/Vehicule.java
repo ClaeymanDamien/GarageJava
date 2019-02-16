@@ -24,7 +24,7 @@ public class Vehicule implements Comparable<Vehicule>{
 
     /** Action du vehicule **/
 
-    public void mettreDeLessence(final int litre)
+    public void mettreDeLessence(int litre) throws CapaciteDepasseeException
     {
         if(litre+jauge <= CAPACITE_RESERVOIR)
         {
@@ -32,9 +32,10 @@ public class Vehicule implements Comparable<Vehicule>{
         }
         else
         {
-            System.out.println("Votre réservoir a une capacité insuffisante pour mettre "+ litre +" d'essence");
+            throw new CapaciteDepasseeException();
         }
     }
+
 
     public void faireLePlein()
     {
