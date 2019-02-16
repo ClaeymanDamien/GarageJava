@@ -1,7 +1,4 @@
-package test;
-
-
-import automobile.*;
+package automobile;
 
 
 public class Main {
@@ -21,10 +18,10 @@ public class Main {
 
         System.out.println("\n\n######## TESTS DU GARAGE Collection: Set Comparable########");
         Main.testGarage2();
-        /*
+
         System.out.println("\n\n######## TESTS DU GARAGE Collection: Set CompteurComparator########");
         Main.testGarage2Bis();
-
+/*
         System.out.println("\n\n######## TESTS DU GARAGE Collection: Set Mappings ########");
         Main.testMappings2();*/
     }
@@ -169,6 +166,44 @@ public class Main {
         }
         System.out.println(garage);
 
+
+        Main.tri2(garage);
+    }
+
+    /**
+     * Garage CompteurComparateur
+     * ATTENTION: il faut d'abord instancier un garage Comparable
+     * l'on référence ensuite par un garage CompteurComparable
+     * en effet, les véhicules ayant tous un compteur à 0 lors de leur instanciation ne seraient pas ajoutés
+     * à un garage CompteurComparable, car un Set est sans doublon par rapport au critère de comparaison
+     */
+    public static void testGarage2Bis() {
+        Garage2 garageTemp = new Garage2();
+
+        garageTemp.add(new Vehicule(5.7));
+        garageTemp.add(new Vehicule(6.2));
+        garageTemp.add(new Vehicule(8.5));
+        garageTemp.add(new Vehicule(5.9));
+        garageTemp.add(new Vehicule(4.5));
+
+        Garage2 garage = new Garage2(new CompteurComparator());
+        garage = garageTemp;
+
+        for(Vehicule vehicule : garage) {
+            vehicule.faireLePlein();
+            vehicule.rouler((int)(Math.random() * 1000));
+        }
+        System.out.println(garage);
+
+
+        for(Vehicule vehicule : garage) {
+            try {
+                vehicule.mettreDeLessence((int) (Math.random() * 100));
+            } catch (CapaciteDepasseeException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        System.out.println(garage);
 
         Main.tri2(garage);
     }
