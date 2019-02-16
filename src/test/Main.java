@@ -123,7 +123,23 @@ public class Main {
         }
         System.out.println(garage);
 
-        //Main.tri1(garage);
+        Main.tri1(garage);
+    }
+
+    private static void tri1(Garage1 garage) {
+        System.out.println("\n\n##Tri selon le no immatriculation ##");
+        garage.sortNoImmatriculation();
+        System.out.println(garage);
+        garage.sortNoImmatriculation();
+
+        System.out.println("\n\n##Tri selon le compteur km totalisateur ##");
+        garage.sortCompteur();
+        System.out.println(garage);
+        garage.sortCompteur();
+
+        System.out.println("\n\n##Tri selon le no immatriculation ##");
+        garage.sortNoImmatriculation();
+        System.out.println(garage);
     }
 
 

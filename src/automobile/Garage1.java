@@ -34,12 +34,57 @@ public class Garage1 implements Iterable<Vehicule>{
 
     public void sortNoImmatriculation()
     {
-        vehiculeList.sort(null);
+        if(ifSortByNoImmatriculation())
+            System.out.println("Véhicules déjà triés par ordre d'immatriculation");
+        else
+            vehiculeList.sort(null);
     }
 
     public void sortCompteur()
     {
-        vehiculeList.sort(new CompteurComparator());
+        if(ifSortByCompteur())
+            System.out.println("Véhicules déjà triés par ordre de compteur");
+        else
+            vehiculeList.sort(new CompteurComparator());
+    }
+
+    public boolean ifSortByNoImmatriculation()
+    {
+        Vehicule vehicule1;
+        Vehicule vehicule2;
+
+        vehicule1 = vehiculeList.get(0);
+
+        for(int i = 1; i < vehiculeList.size(); i++)
+        {
+            vehicule2 = vehiculeList.get(i);
+
+            if(vehicule1.compareTo(vehicule2) > 0)
+                return false;
+
+            vehicule1 = vehicule2;
+        }
+        return true;
+    }
+
+    public boolean ifSortByCompteur()
+    {
+        Vehicule vehicule1;
+        Vehicule vehicule2;
+        CompteurComparator compteurComparator = new CompteurComparator();
+
+        vehicule1 = vehiculeList.get(0);
+
+        for(int i = 1; i < vehiculeList.size(); i++)
+        {
+            vehicule2 = vehiculeList.get(i);
+
+            if(compteurComparator.compare(vehicule1,vehicule2) > 0)
+                return false;
+
+            vehicule1 = vehicule2;
+        }
+        return true;
     }
 
     /** Les overrides */
