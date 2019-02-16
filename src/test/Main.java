@@ -17,10 +17,11 @@ public class Main {
         Main.testGarage1();
         
         /*System.out.println("\n\n######## TESTS DU GARAGE Collection: List Mappings ########");
-        Main.testMappings1();
+        Main.testMappings1();*/
 
         System.out.println("\n\n######## TESTS DU GARAGE Collection: Set Comparable########");
         Main.testGarage2();
+        /*
         System.out.println("\n\n######## TESTS DU GARAGE Collection: Set CompteurComparator########");
         Main.testGarage2Bis();
 
@@ -142,6 +143,50 @@ public class Main {
         System.out.println(garage);
     }
 
+    // Garage Comparable
+    public static void testGarage2() {
+        Garage2 garage = new Garage2();
+
+        garage.add(new Vehicule(5.8));
+        garage.add(new Vehicule(6.3));
+        garage.add(new Vehicule(8.4));
+        garage.add(new Vehicule(5.9));
+        garage.add(new Vehicule(4.5));
+        System.out.println(garage);
+
+        for(Vehicule vehicule : garage) {
+            vehicule.faireLePlein();
+            vehicule.rouler((int) (Math.random() * 1000));
+        }
+        System.out.println(garage);
+
+        for(Vehicule vehicule : garage) {
+            try {
+                vehicule.mettreDeLessence((int) (Math.random() * 100));
+            } catch (CapaciteDepasseeException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        System.out.println(garage);
 
 
+        Main.tri2(garage);
+    }
+
+    private static void tri2(Garage2 garage) {
+        System.out.println("\n\n##Tri selon le no immatriculation ##");
+        garage.sortNoImmatriculation();
+        System.out.println(garage);
+        garage.sortNoImmatriculation();
+
+
+        System.out.println("\n\n##Tri selon le compteur km totalisateur ##");
+        garage.sortCompteur();
+        System.out.println(garage);
+        garage.sortCompteur();
+
+        System.out.println("\n\n##Tri selon le no immatriculation ##");
+        garage.sortNoImmatriculation();
+        System.out.println(garage);
+    }
 }

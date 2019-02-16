@@ -6,7 +6,7 @@ import java.util.Objects;
 public class Vehicule implements Comparable<Vehicule>{
 
     private int noImmatriculation;
-    private static int registre;
+    private static int REGISTRE;
     private Compteur compteur;
     private double jauge;
     private double consommation;
@@ -16,8 +16,8 @@ public class Vehicule implements Comparable<Vehicule>{
     public Vehicule(final double consommation)
     {
         compteur = new Compteur();
-        noImmatriculation = registre;
-        registre++;
+        noImmatriculation = REGISTRE;
+        REGISTRE++;
         this.consommation = consommation;
         jauge = 0;
     }
@@ -73,9 +73,9 @@ public class Vehicule implements Comparable<Vehicule>{
     public String toString() {
         String output;
 
-        output = "Immatriculation = " + noImmatriculation + "\n";
-        output += "Consommation = " + consommation + "\n";
-        output += "Jauge = " + jauge + "\n";
+        output = "Immatriculation = " + noImmatriculation + ", ";
+        output += "Consommation = " + consommation + ", ";
+        output += "Jauge = " + jauge + ", ";
         output += compteur + "\n";
 
         return output;
@@ -118,8 +118,8 @@ public class Vehicule implements Comparable<Vehicule>{
         this.noImmatriculation = noImmatriculation;
     }
 
-    public static void setRegistre(int registre) {
-        Vehicule.registre = registre;
+    public static void setREGISTRE(int REGISTRE) {
+        Vehicule.REGISTRE = REGISTRE;
     }
 
 
@@ -139,8 +139,8 @@ public class Vehicule implements Comparable<Vehicule>{
         return noImmatriculation;
     }
 
-    public static int getRegistre() {
-        return registre;
+    public static int getREGISTRE() {
+        return REGISTRE;
     }
 
     public double getJauge() {
@@ -159,5 +159,13 @@ class CompteurComparator implements Comparator<Vehicule> {
         int compteur2 = vehicule2.getCompteur().getTotaliseur();
 
         return compteur1-compteur2;
+    }
+}
+
+class NoImmatriculationComparator implements Comparator<Vehicule>{
+
+    @Override
+    public int compare(Vehicule o1, Vehicule o2) {
+        return o1.getNoImmatriculation()-o2.getNoImmatriculation();
     }
 }
