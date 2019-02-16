@@ -33,6 +33,18 @@ public class Garage2 implements Iterable<Vehicule>{
         vehiculeList.add(vehicule);
     }
 
+    public void resetPartielAll() {
+        Map garage = new Garage2Action(vehiculeList);
+        Function reset = new ResetCompteurPartiel();
+        garage.map(reset);
+    }
+
+    public void faireLePleinAll() {
+        Map garage = new Garage2Action(vehiculeList);
+        Function faireLePlein = new FaireLePlein();
+        garage.map(faireLePlein);
+    }
+
     /** Les tries **/
 
     public void sortNoImmatriculation()
@@ -109,13 +121,10 @@ public class Garage2 implements Iterable<Vehicule>{
 
     @Override
     public String toString() {
-        Vehicule vehicule = null;
-        Iterator<Vehicule> iterator = vehiculeList.iterator();
+
         String output = "[";
 
-        while (iterator.hasNext())
-        {
-            vehicule = iterator.next();
+        for (Vehicule vehicule : vehiculeList){
             output += "Vehicule "+ vehicule.getNoImmatriculation()+" : "+ vehicule.getCompteur()+"; jauge = "+ vehicule.getJauge()+ " Consommation = " + vehicule.getConsommation() +",\n";
         }
 

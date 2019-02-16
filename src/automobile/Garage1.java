@@ -4,6 +4,7 @@ package automobile;
 import java.util.*;
 import java.lang.Iterable;
 
+
 public class Garage1 implements Iterable<Vehicule>{
 
     private List <Vehicule> vehiculeList;
@@ -28,6 +29,18 @@ public class Garage1 implements Iterable<Vehicule>{
     public void add(final Vehicule vehicule)
     {
         vehiculeList.add(vehicule);
+    }
+
+    public void resetPartielAll() {
+        Map garage = new Garage1Action(vehiculeList);
+        Function reset = new ResetCompteurPartiel();
+        garage.map(reset);
+    }
+
+    public void faireLePleinAll() {
+        Map garage = new Garage1Action(vehiculeList);
+        Function faireLePlein = new FaireLePlein();
+        garage.map(faireLePlein);
     }
 
     /** Les tries **/
@@ -105,34 +118,14 @@ public class Garage1 implements Iterable<Vehicule>{
     @Override
     public String toString() {
 
-        Vehicule vehicule = null;
         String output = "[";
 
-        for(int i = 0; i < vehiculeList.size(); i++)
-        {
-            vehicule = vehiculeList.get(i);
+        for(Vehicule vehicule : vehiculeList){
             output += "Vehicule "+ vehicule.getNoImmatriculation()+" : "+ vehicule.getCompteur()+"; jauge = "+ vehicule.getJauge()+ " Consommation = " + vehicule.getConsommation() +",\n";
         }
+
         output += "]";
 
         return output;
     }
-
-    public void resetPartielAll() {
-        for(int i = 0; i < vehiculeList.size(); i++)
-        {
-            vehiculeList.get(i).getCompteur().setPartiel(0);
-        }
-    }
-
-    public void faireLePleinAll() {
-        for(int i = 0; i < vehiculeList.size(); i++)
-        {
-            if (vehiculeList.get(i).getJauge()<10)
-            {
-                vehiculeList.get(i).faireLePlein();
-            }
-        }
-    }
 }
-
